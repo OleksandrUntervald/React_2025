@@ -1,21 +1,20 @@
 
 import './App.css'
+import NewComponets from "./components/NewComponets.tsx";
 
 function App() {
     return (
-        <>
-            <ul>
-                <li>
-                    1
-                </li>
-                <li>
-                    2
-                </li>
-                <li>
-                    3
-                </li>
-            </ul>
-        </>
+        <div>
+             <NewComponets  title={'Title 1'}>
+                 'Text 1'
+             </NewComponets>
+            <NewComponets title={'Title 2'}>
+
+            </NewComponets>
+            <NewComponets title={'Title 3'}>
+                'Text 4'
+            </NewComponets>
+        </div>
     )
 }
 
