@@ -1,14 +1,14 @@
 
 import './App.css'
-import {FamilyComponent} from "./components/FamilyComponent/FamilyComponent.tsx";
+import {Courses} from "./components/Courses/Courses.tsx";
 
 
 
 function App() {
     return (
-        <>
-            <FamilyComponent/>
-        </>
+        <div>
+            <Courses/>
+        </div>
     )
 }
 
