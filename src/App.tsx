@@ -1,26 +1,26 @@
 
 import './App.css'
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import type {IUser} from "./modules/IUser.ts";
+import {UserComponent} from "./component/UserComponent.tsx";
 
 
 
-function App() {
-    let [counter, setCounter] = useState<number>(0);
+const App = () => {
+    const [users, setUsers] = useState<IUser[]>([]);
 
+    useEffect(() => {
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(value => value.json())
+            .then(response => {
+                setUsers(response)
+            });
+    }, [])
     return (
         <div>
-            <h2>{counter}</h2>
-            <button onClick={() => {
-                setCounter((value) => {
-                    return  value + 1
-                })
-            }}>Increment</button>
-
-            <button onClick={() => {
-                setCounter((value) => {
-                    return value - 1
-                })
-            }}>Decrement</button>
+            {
+                users.map(value => <UserComponent key={value.id} item={value}/>)
+            }
         </div>
     )
 }
