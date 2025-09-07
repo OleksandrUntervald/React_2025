@@ -1,4 +1,4 @@
-import type {IUser} from "../modules/IUser.ts";
+import type {IUser} from "../../modules/IUser.ts";
 import type {FC} from "react";
 
 type UserProps = {
