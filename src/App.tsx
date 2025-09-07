@@ -1,13 +1,26 @@
 
 import './App.css'
-import {Courses} from "./components/Courses/Courses.tsx";
+import {useState} from "react";
 
 
 
 function App() {
+    let [counter, setCounter] = useState<number>(0);
+
     return (
         <div>
-            <Courses/>
+            <h2>{counter}</h2>
+            <button onClick={() => {
+                setCounter((value) => {
+                    return  value + 1
+                })
+            }}>Increment</button>
+
+            <button onClick={() => {
+                setCounter((value) => {
+                    return value - 1
+                })
+            }}>Decrement</button>
         </div>
     )
 }
