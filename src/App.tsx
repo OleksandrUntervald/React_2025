@@ -1,13 +1,13 @@
 
 import './App.css'
-import {UsersComponent} from "./component/UsersComponent/UsersComponent.tsx";
+import {TodoComponents} from "./component/TodoComponents/TodoComponents.tsx";
 
 
 
 
 const App = () => {
    return (<div>
-       <UsersComponent/>
+       <TodoComponents/>
    </div>)
 }
 
