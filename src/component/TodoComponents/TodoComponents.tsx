@@ -9,7 +9,7 @@ export const TodoComponents = () => {
         LoadTodo().then(values => setTodos(values))
     }, []);
     return (
-        <div>
+        <div className='bg-red-500'>
 
             {todos.map((todo, index) =>
                 <TodoComponent key={index} todo={todo}/>
