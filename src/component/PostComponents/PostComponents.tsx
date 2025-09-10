@@ -11,7 +11,7 @@ export const PostComponents = () => {
     }, []);
 
     return (
-        <div>
+        <div className='bg-green-500'>
             {posts.map((post, index) => <PostComponent key={index} post={post}/> )}
 
         </div>
