@@ -1,14 +1,12 @@
-
-import type {IPostsDummyjson} from "../modules/IPostsDammyJSON.ts";
-import type {IPost} from "../modules/IPosts.ts";
+import type {IProduct, IProductsResponse} from "../modules/IProductsResponse.ts";
 
 
-const endpointPosts = import.meta.env.VITE_API_BASE_URL + '/posts';
+const endpointPosts = import.meta.env.VITE_API_BASE_URL + '/products';
 
 
-export const LoadPost = async (): Promise<IPost[]> => {
-    const responsPostDammy: IPostsDummyjson = await fetch(endpointPosts)
+export const LoadProducts = async (): Promise<IProduct[]> => {
+    const responsPostDammy: IProductsResponse = await fetch(endpointPosts)
         .then(valuePost  => valuePost.json());
-    return responsPostDammy.posts
+    return responsPostDammy.products
 }
 

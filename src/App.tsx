@@ -1,13 +1,13 @@
 
 import './App.css'
-import {PostComponents} from "./component/PostComponents/PostComponents.tsx";
+import {ProductsComponent} from "./component/ProductsComponents/ProductsComponent.tsx";
 
 
 
 
 const App = () => {
    return (<div className='flex'>
-       <PostComponents />
+       <ProductsComponent />
    </div>)
 }
 
