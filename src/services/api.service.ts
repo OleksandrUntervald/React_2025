@@ -1,12 +1,8 @@
-import type {IProduct, IProductsResponse} from "../modules/IProductsResponse.ts";
+import type {IUser} from "../modules/IUser.ts";
 
-
-const endpointPosts = import.meta.env.VITE_API_BASE_URL + '/products';
-
-
-export const LoadProducts = async (): Promise<IProduct[]> => {
-    const responsPostDammy: IProductsResponse = await fetch(endpointPosts)
-        .then(valuePost  => valuePost.json());
-    return responsPostDammy.products
+export  const userService = {
+    getUsers: async (): Promise<IUser[]> => {
+        return await fetch('https://jsonplaceholder.typicode.com/users')
+            .then(value => value.json())
+    }
 }
-

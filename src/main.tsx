@@ -1,21 +1,20 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import {MainLayouts} from "./layouts/MainLayouts.tsx";
-import {APage} from "./pages/APage.tsx";
-import {BPage} from "./pages/BPage.tsx";
+import {Layout} from "./layout/Layout.tsx";
+import {PostsPage} from "./pages/PostsPage.tsx";
+import {UsersPage} from "./pages/UsersPage.tsx";
+import {HomePage} from "./pages/HomePage.tsx";
 
+const routs = createBrowserRouter([
+    {path: '/', element:<Layout/>, children: [
+            {index: true, element: <HomePage/>},
+            {path:'users', element: <UsersPage/>},
+            {path:'posts', element: <PostsPage/>}
+        ]}
 
-const router = createBrowserRouter([
-    {path: '/', element: <MainLayouts/>,
-        children:
-        [
-            {path: 'a', element: <APage/>},
-            {path: 'b', element: <BPage/>}
-        ]
-    }
 ])
 
 createRoot(document.getElementById('root')!)
-    .render(<RouterProvider router={router}/>)
+    .render(<RouterProvider router={routs}/>)
 
