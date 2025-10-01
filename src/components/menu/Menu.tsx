@@ -1,19 +1,16 @@
 import {Link} from "react-router-dom";
-import {CommentsComponent} from "../CommentsComponent.tsx";
-import {UsersPlaceholderComponent} from "../UsersPlaceholderComponent.tsx";
-import {UsersDummyComponent} from "../UsersDummyComponent.tsx";
-import {PostsPlaceholderComponents} from "../PostsPlaceholderComponents.tsx";
-import {PostsDummyComponents} from "../PostsDummyComponents.tsx";
+
 
 
 export const Menu = () => {
     return(
-        <ul className='flex justify-around'>
-            <li><Link to={'/users/jsonplaceholder'}><UsersPlaceholderComponent/></Link></li>
-            <li><Link to={'/users/dummyjson'}><UsersDummyComponent/></Link></li>
-            <li><Link to={'/posts/jsonplaceholder'}><PostsPlaceholderComponents/></Link></li>
-            <li><Link to={'/posts/dummyjson'}><PostsDummyComponents/></Link></li>
-            <li><Link to={'/comments/jsonplaceholder'}><CommentsComponent/></Link></li>
+        <ul className='flex justify-around bg-red-500'>
+            <li><Link to={'/users/jsonplaceholder'}><div>users placeholder</div></Link></li>
+            <li><Link to={'/users/dummyjson'}><div>users dummy</div></Link></li>
+            <li><Link to={'/posts/jsonplaceholder'}><div>posts placeholder</div></Link></li>
+            <li><Link to={'/posts/dummyjson'}><div>posts dummyjson</div></Link></li>
+            <li><Link to={'/comments/jsonplaceholder'}><div>comments jsonplaceholder</div></Link></li>
+            <li><Link to={'/comments/dummyjson'}><div>comments dummyjson</div></Link></li>
         </ul>
     )
 }
