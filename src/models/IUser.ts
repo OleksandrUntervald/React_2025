@@ -1,4 +1,4 @@
-export interface IUsers {
+export interface IUser {
     id: number;
     firstName: string;
     lastName: string;
@@ -70,7 +70,7 @@ export interface IUsers {
 }
 
 export interface IUsersResponse {
-    users: IUsers[];
+    users: IUser[];
     total: number;
     skip: number;
     limit: number;

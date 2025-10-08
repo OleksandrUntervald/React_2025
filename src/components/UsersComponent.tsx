@@ -1,25 +1,21 @@
-import {useEffect, useState} from "react";
-import type {IUsers} from "../models/IUsers.ts";
-import {getAll} from "../services/general.api.service.ts";
-import type {IBaseResponseModel} from "../models/IBaseResponseModel.ts";
+import { useEffect, useState} from "react";
+import type {IUser, IUsersResponse} from "../models/IUser.ts";
 import {UserComponent} from "./UserComponent.tsx";
+import {userService} from "../services/api.service.ts";
 
 export const UsersComponent = () => {
-    const [users, setUsers] = useState<IUsers[]>([])
+    const [users, setUsers] = useState<IUser[]>([]);
     useEffect(() => {
-    getAll<IBaseResponseModel & {users: IUsers[]}>('/users')
-        .then(({users}) => setUsers(users))
-    }, [])
-    return (
+        userService.getAllUsers()
+            .then(({users}: IUsersResponse) => {
+                setUsers(users);
+            })
+    }, []);
 
+    return(
         <div>
-            {
-                users.map((user, userIndex) =>
-                    <UserComponent key={userIndex} user={user}/>
-                )
-            }
-        </div>
+            {users.map((user: IUser, index) => <UserComponent user={user} key={index}/>
+ )}
 
-    )
-
+    </div>)
 }
