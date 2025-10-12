@@ -1,10 +1,12 @@
-import type {IReqResInResponse} from "../modules/IReqResInResponse.ts";
+import type {IUserResponse} from "../modules/IUsersResponse.ts";
 
-const API_KEY = "reqres-free-v1";
+const url = 'https://dummyjson.com';
 
-export const getAllUsers = async (pg: string):Promise<IReqResInResponse> => {
-    return   await fetch(`https://reqres.in/api/users?page=${pg}`,{
-       headers: {'x-api-key': API_KEY},
-   })
-        .then(res => res.json())
+
+export const getUsers = async (page: string): Promise<IUserResponse> => {
+    const limit = 30;
+    const skip = limit * (+page) - limit;
+    const response = fetch(url + '/users' + '?skip=' + skip)
+        .then(value =>  value.json())
+    return response
 }

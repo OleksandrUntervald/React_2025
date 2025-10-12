@@ -1,6 +1,9 @@
-import {createBrowserRouter} from "react-router-dom";
-import App from "../App.tsx";
+import {createBrowserRouter} from "react-router-dom"; 
+import {UsersPage} from "../pages/UsersPage.tsx";
+import MainLayout from "../MainLayout.tsx";
 
 export const routes = createBrowserRouter([{
-    path:'/', element: <App/>
+    path:'/', element: <MainLayout/>, children: [
+        {path: 'users', element: <UsersPage/>}
+    ]
 }])
