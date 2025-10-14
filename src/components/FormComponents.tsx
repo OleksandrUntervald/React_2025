@@ -7,7 +7,13 @@ interface IFormProps {
 }
 
 export const FormComponent = () => {
-    const {handleSubmit, register} = useForm<IFormProps>();
+    const {
+        handleSubmit,
+        register,
+        formState: { errors, isValid }
+    } = useForm<IFormProps>({
+        mode: "all"
+    });
 
     const customHandler   = (formDataProps: IFormProps) => {
         console.log(formDataProps)
@@ -16,10 +22,22 @@ export const FormComponent = () => {
 
         <div>
             <form onSubmit={handleSubmit(customHandler)}>
-                <input className='border-2' type="text" {...register('username')} />
-                <input className='border-2' type="text" {...register('password')} />
-                <input className='border-2' type="number" {...register('age')} />
-                <button className='border-2'>send</button>
+                <input className='border-2' type="text" {...register('username', {
+                    required: 'is required',
+                    minLength: {value: 1, message: 'wrong name'}
+                })} />
+                <input className='border-2' type="text" {...register('password', {
+                    required: 'is required',
+                    minLength: {value: 3, message: 'pass to short'},
+                    maxLength: {value: 20, message: 'pass to long'}
+                })} />
+                <input className='border-2' type="number" {...register('age', {
+                    required: 'is required',
+                    valueAsNumber: true,
+                    min: {value: 1, message: 'age too small'},
+                    max: {value: 117, message: 'age too big'}
+                })} />
+                <button disabled={!isValid} className='border-2'>send</button>
             </form>
         </div>
     )
