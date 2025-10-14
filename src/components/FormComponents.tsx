@@ -19,7 +19,7 @@ export const FormComponent = () => {
     });
 
     const customHandler   = (formDataProps: IFormProps) => {
-        console.log(formDataProps)
+        console.log(`asdsa${formDataProps}`)
     }
 
     return (
