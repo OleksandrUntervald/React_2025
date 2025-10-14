@@ -1,38 +1,24 @@
-import {type FormEvent, useState} from "react";
+import {useForm} from "react-hook-form";
 
 interface IFormProps {
     username: string,
-    password: string
+    password: string,
+    age: number
 }
 
-export const FormComponents = () => {
+export const FormComponent = () => {
+    const {handleSubmit, register} = useForm<IFormProps>();
 
-    const [formState, setFormState] = useState<IFormProps>({
-        username: '',
-        password: ''
-    })
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        let user = {
-            username: formState.username,
-            password: formState.password
-        };
-        console.log(user)
-
+    const customHandler   = (formDataProps: IFormProps) => {
+        console.log(formDataProps)
     }
-
-    const handleInputChange = (e: FormEvent<HTMLFormElement>)  => {
-        const input = e.target as HTMLInputElement;
-        console.log(input.name)
-        setFormState({...formState, [input.name]: input.value });
-    }
-
-
     return (
+
         <div>
-            <form onSubmit={handleSubmit}>
-                <input className='border-2' type="text" name={'username'} value={formState.username} onChange={handleInputChange}/>
-                <input className='border-2' type="text" name={'password'} value={formState.password} onChange={handleInputChange}/>
+            <form onSubmit={handleSubmit(customHandler)}>
+                <input className='border-2' type="text" {...register('username')} />
+                <input className='border-2' type="text" {...register('password')} />
+                <input className='border-2' type="number" {...register('age')} />
                 <button className='border-2'>send</button>
             </form>
         </div>

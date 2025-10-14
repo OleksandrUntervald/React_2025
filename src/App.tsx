@@ -1,10 +1,10 @@
-import {FormComponents} from "./components/FormComponents.tsx";
+import {FormComponent } from "./components/FormComponents.tsx";
 
 
 const App = () => {
    return (
        <div>
-          <FormComponents/>
+          <FormComponent/>
        </div>
 
   )
