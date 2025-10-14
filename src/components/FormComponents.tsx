@@ -1,4 +1,6 @@
 import {useForm} from "react-hook-form";
+import {joiResolver} from "@hookform/resolvers/joi";
+import {userValidator} from "./validation/user.validator.ts";
 
 interface IFormProps {
     username: string,
@@ -12,33 +14,38 @@ export const FormComponent = () => {
         register,
         formState: { errors, isValid }
     } = useForm<IFormProps>({
-        mode: "all"
+        mode: "all",
+        resolver: joiResolver(userValidator)
     });
 
     const customHandler   = (formDataProps: IFormProps) => {
         console.log(formDataProps)
     }
+
     return (
 
-        <div>
-            <form onSubmit={handleSubmit(customHandler)}>
-                <input className='border-2' type="text" {...register('username', {
-                    required: 'is required',
-                    minLength: {value: 1, message: 'wrong name'}
-                })} />
-                <input className='border-2' type="text" {...register('password', {
-                    required: 'is required',
-                    minLength: {value: 3, message: 'pass to short'},
-                    maxLength: {value: 20, message: 'pass to long'}
-                })} />
-                <input className='border-2' type="number" {...register('age', {
-                    required: 'is required',
-                    valueAsNumber: true,
-                    min: {value: 1, message: 'age too small'},
-                    max: {value: 117, message: 'age too big'}
-                })} />
-                <button disabled={!isValid} className='border-2'>send</button>
-            </form>
-        </div>
+       <div>
+           <div>
+               <form onSubmit={handleSubmit(customHandler)}>
+                   <label>
+                       <input className='border-2' type="text" {...register('username')} />
+                       {errors.username && <div>{errors.username.message}</div>}
+                   </label>
+
+                   <label>
+                       <input className='border-2' type="text" {...register('password')} />
+                       {errors.password && <div>{errors.password.message}</div>}
+                   </label>
+                   <label>
+                       <input className='border-2' type="number" {...register('age')} />
+                       {errors.age && <div>{errors.age.message}</div>}
+                   </label>
+
+                   <button disabled={!isValid} className='border-2'>send</button>
+               </form>
+           </div>
+
+       </div>
+
     )
 }
