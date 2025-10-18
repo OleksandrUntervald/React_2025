@@ -1,12 +1,11 @@
+import {type FC, memo} from "react";
 
 
-const UserComponent = () => {
+export const UserComponent: FC<{foo:()=> void}> = memo (() => {
     console.log('user')
     return (
         <div>
 
         </div>
     );
-};
-
-export default UserComponent;
+});
