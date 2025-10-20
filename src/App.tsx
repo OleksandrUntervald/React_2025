@@ -1,10 +1,23 @@
-import UsersComponent from "./Components/UsersComponent.tsx";
+import {LeftA} from "./Components/LeftA.tsx";
+import {MyContexProvider} from "./contex/MyContexProvider.tsx";
+import {useState} from "react";
+import {RightA} from "./Components/RightA.tsx";
+
 
 const App = () => {
-    console.log('app')
+    const [themeColor, setThemeColor] = useState<string>('light');
    return (
        <div>
-           <UsersComponent/>
+           <MyContexProvider.Provider value={{
+               theme: themeColor,
+               changeTheme: (themeValue: string) =>
+                   {
+                       setThemeColor(themeValue);
+                   }
+           }}>
+           <LeftA/>
+           <RightA/>
+           </MyContexProvider.Provider>
        </div>
 
   )
