@@ -1,17 +1,14 @@
 import type {IUser} from "../modules/IUser.ts";
-import {type FC, memo} from "react";
+import type {FC} from "react";
 
-type UserComponentsPropsType = {
-    user: IUser,
-    foo: () => void,
-    arr: number[]
-
+type UserPropsType = {
+    user: IUser
 }
 
-export const UserComponents: FC<UserComponentsPropsType> = memo( ({user, foo, arr} ) => { //this line make action memo wich don`t do this component rerender
+export const UserComponents: FC<UserPropsType> = ({user}) => {
     return (
-        <div onClick={foo}>
-            {user.id} {arr}
+        <div>
+            {user.id}
         </div>
     )
-} )
+}

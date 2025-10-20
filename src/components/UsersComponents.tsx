@@ -1,32 +1,14 @@
-import {UserComponents} from "./UserComponents.tsx";
-import {useCallback, useEffect, useMemo, useState} from "react";
+import {useFetch} from "../hooks/useFetch.tsx";
 import type {IUser} from "../modules/IUser.ts";
-import {getUsers} from "../services/api.srevice.ts";
+import {UserComponents} from "./UserComponents.tsx";
 
 export const UsersComponents = () => {
-
-   const arr = useMemo(() =>{  // in this area we have hook wich rescue this function from the rerender
-       return [1,3,5]
-   }, [])
-
-    const foo = useCallback(() => { // in this area we have hook wich rescue this function from the rerender
-        console.log("value");
-    }, [])
-
-
-
-    const [users, setUsers] = useState<IUser[]>([]);
-    useEffect(() => {
-        getUsers().then(value => {
-            setUsers(value.data)
-        })
-    }, []);
+    const usersValue = useFetch<IUser[]>('https://jsonplaceholder.typicode.com/users');
+if (!usersValue) return <div>Loading</div>
     return (
         <div>
 
-            {users.map((user) =>
-               <UserComponents key={user.id} user={user} foo={foo} arr={arr} />)}
-
+            {usersValue.map((user: IUser, index:number) => <UserComponents key={index} user={user}/>)}
 
         </div>
     )
